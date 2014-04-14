@@ -27,6 +27,7 @@ int main()
 	card_1.life = 3;
 	card_2.attack = 4;
 	card_2.life = 1;
+	result=attack(&card_1,card_2);
 	printf("%d\n", result);
 	return 0;
 }
