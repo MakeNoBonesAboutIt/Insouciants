@@ -18,7 +18,7 @@ int attack(struct card_t*attacker, struct card_t*defender)
 			return 3;
 }
 
-/*Glavnata funkciq sus primerni karti*/
+/*Primerna glavna funkciq sus primerni karti*/
 int main()
 {
 	struct card_t card_1, card_2;
