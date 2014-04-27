@@ -2,6 +2,8 @@
 #define DECK_H
 #include "card.h"
 #define MAX_CARDS_IN_DECK (40)
+#define ERR_EXHAUSTED_STACK_SIZE 1
+#define ERR_EMPTY_STACK 2
 
 struct deck_t
 {	

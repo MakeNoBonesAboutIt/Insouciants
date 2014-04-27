@@ -2,8 +2,25 @@
 #include <string.h>
 #include "../deck.h"
 
+void print_card(struct card_t *card)
+{
+	printf("{'%s', at: %d, def: %d, cost: %d}", card->name, card->attack, card->life, card->cost);
+}
+
+void print_deck(struct deck_t *deck) 
+{
+	int i;
+	for(i=0; i < deck->n; i++)
+	{
+		print_card(&deck->cards[i]);
+		printf("\n");
+	}
+	printf("------------------- N=%d\n", deck->n);
+}
+
 int main()
 {
+	int res;
 	struct deck_t player1;
 	struct deck_t player2 = { 0 };
 	struct card_t card;
@@ -21,13 +38,39 @@ int main()
 	card1.cost = 1;
 
 	player1.n = 0;
-	push_card(card, &player1);
-	printf("N = %d\n", player1.n);
-	push_card(card1, &player1);
-	printf("N = %d\n", player1.n);
-	draw_card(&player1, &card);
-	printf("N = %d\n", player1.n);
-	look_card(&player1, &card);
-	printf("N = %d\n", player1.n);
+
+	res = push_card(card, &player1);
+	printf("push_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = push_card(card1, &player1);
+	printf("push_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = draw_card(&player1, &card);
+	printf("draw_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = look_card(&player1, &card);
+	printf("look_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = draw_card(&player1, &card);
+	printf("draw_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = look_card(&player1, &card);
+	printf("look_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	res = draw_card(&player1, &card);
+	printf("draw_card RETURNED: %d\n", res);
+	print_deck(&player1);
+
+	player1.n = MAX_CARDS_IN_DECK;
+	res = push_card(card, &player1);
+	printf("push_card RETURNED: %d\n", res);
+
+
 	return 0;
 }
