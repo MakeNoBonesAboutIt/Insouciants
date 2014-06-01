@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "../Homework_1:Card/card.h"
+#include "../card.h"
 
 int main()
 {
