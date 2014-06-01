@@ -3,6 +3,8 @@
 void add_mana (struct manapool_t *pool , int amount)
 {
 	pool->mana += amount;
+	if (pool->mana > 10)
+		pool->mana = 10;
 }
 
 int remove_mana (struct manapool_t *pool , int amount)

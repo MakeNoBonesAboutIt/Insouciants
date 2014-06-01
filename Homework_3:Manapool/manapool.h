@@ -8,6 +8,7 @@
 struct manapool_t 
 {
 	int mana;
+	int begin_turn_mana;
 };
 
 void add_mana (struct manapool_t *pool , int amount);
