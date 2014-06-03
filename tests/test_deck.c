@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "../Homework_2:Deck/deck.h"
+#include "../deck.h"
 
 void print_card(struct card_t *card)
 {

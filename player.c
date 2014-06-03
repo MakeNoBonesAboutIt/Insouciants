@@ -27,6 +27,7 @@ struct card_t play_card_from_hand(struct player_t *player, int card)
     int n = player->player_hand.n;
     int i;
     struct card_t result;
+    struct card_t *pcard;
     if(n <= card || card < 0)
     {
         result.attack = 0;
@@ -42,6 +43,11 @@ struct card_t play_card_from_hand(struct player_t *player, int card)
             player->player_hand.cards[i-1] = player->player_hand.cards[i];
         }
         player->player_hand.n = n - 1;
+	pcard = &player->player_hand.cards[n-1];
+        pcard->attack = 0;
+        pcard->life = 0;
+        pcard->cost = 0;
+        pcard->name[0] = '\0';
     }
     return result;
 }

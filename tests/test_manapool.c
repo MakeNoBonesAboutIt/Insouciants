@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../Homework_3:Manapool/manapool.h"
+#include "../manapool.h"
 
 int main ()
 {
