@@ -98,7 +98,7 @@ int main()
 		{   /*player_hand*/
 		0, {}
 		},
-		30  /*player_hp*/
+		30 /*player_hp*/
 	},
 	
 	{ /*board_1*/
@@ -136,13 +136,9 @@ int main()
 	change_player(&board);
 	print_board(&board);
 
-
-
-	/*Returns 0 if can play, 1 if not enough cards, 2 if not enough mana, 3 if space taken*/
 	res = can_play_card(&board, 1, 5);
 	printf("%d\n", res);
 
-	/*Puts a card on the board, removes from hand, removes mana*/
 	play_card(&board, 1, 5); 
 	print_board(&board);
 
@@ -158,11 +154,16 @@ int main()
 	play_card(&board, 2, 5);
 	print_board(&board);
 
-	/*Both players have ended their turn*/
 	turn_end(&board);
 	print_board(&board);
 
-
+	
+	play_card(&board, 2, 3);
+	print_board(&board);
+	change_player(&board);
+	play_card(&board, 2, 3);
+	print_board(&board);
+	
 
 	return 0;
 }
