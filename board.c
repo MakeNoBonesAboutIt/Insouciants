@@ -38,11 +38,13 @@ int play_card(struct board_t *board, int card, int num_lane)
 	{
 		player = &board->player_1;
 		board_c = &board->board_1;
+		board->player_1.player_mana.mana -= board->player_1.player_hand.cards[card-1].cost;
 	}
 	else
 	{
 		player = &board->player_2;
 		board_c = &board->board_2;
+		board->player_2.player_mana.mana -= board->player_2.player_hand.cards[card-1].cost;
 	}
 	card_temp = play_card_from_hand(player, card-1);
 	board_c->cards[num_lane-1] = card_temp;
@@ -112,27 +114,42 @@ void turn_end(struct board_t *board)
 void print_board(struct board_t *board)
 {
 	int i;
-	printf("\nPlayer 2: %dHp, Mana %d/10 Turn:%d\n", board->player_2.player_hp, board->player_2.player_mana.begin_turn_mana, board->turn);
-	printf("___________________________________________________\n");
+	printf("\n\n\n\n\n\n");
+	printf("\nPlayer 2: %dHp, Mana %d/%d Turn:%d\n", 
+		board->player_2.player_hp, 
+		board->player_2.player_mana.mana, 
+		board->player_2.player_mana.begin_turn_mana, 
+		board->turn);
+	printf("_____________________________________________________________\n");
 	for (i = 0; i < 5; ++i)
-		printf("|  %2d/%2d  ",
-			board->player_2.player_hand.cards[i].attack, board->player_2.player_hand.cards[i].life);
+		printf("| %2d/%2d(%2d) ",
+			board->player_2.player_hand.cards[i].attack,
+			board->player_2.player_hand.cards[i].life,
+			board->player_2.player_hand.cards[i].cost);
 	printf("|\n");
-	printf("###################################################\n");
+	printf("#############################################################\n");
 	for (i = 0; i < 5; ++i)
-		printf("#  %2d/%2d  ",
-			board->board_2.cards[i].attack, board->board_2.cards[i].life);
+		printf("#   %2d/%2d   ",
+			board->board_2.cards[i].attack,
+			board->board_2.cards[i].life);
 	printf("#\n");
 	for (i = 0; i < 5; ++i)
-		printf("#  %2d/%2d  ",
-			board->board_1.cards[i].attack, board->board_1.cards[i].life);
+		printf("#   %2d/%2d   ",
+			board->board_1.cards[i].attack, 
+			board->board_1.cards[i].life);
 	printf("#\n");
-	printf("###################################################\n");
+	printf("#############################################################\n");
 	for (i = 0; i < 5; ++i)
-		printf("|  %2d/%2d  ",
-			board->player_1.player_hand.cards[i].attack, board->player_1.player_hand.cards[i].life);
+		printf("| %2d/%2d(%2d) ",
+			board->player_1.player_hand.cards[i].attack, 
+			board->player_1.player_hand.cards[i].life,
+			board->player_1.player_hand.cards[i].cost);
 	printf("|\n");
-	printf("___________________________________________________\n");
-	printf("Player 1: %dHp, Mana %d/10 Turn:%d\n\n", board->player_2.player_hp, board->player_2.player_mana.begin_turn_mana, board->turn);
-
+	printf("_____________________________________________________________\n");
+	printf("Player 1: %dHp, Mana %d/%d Turn:%d\n\n", 
+		board->player_2.player_hp, 
+		board->player_1.player_mana.mana, 
+		board->player_1.player_mana.begin_turn_mana, 
+		board->turn);
+	printf("\n\n\n\n\n\n");
 }
