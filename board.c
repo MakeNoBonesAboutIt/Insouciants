@@ -153,3 +153,16 @@ void print_board(struct board_t *board)
 		board->turn);
 	printf("\n\n\n\n\n\n");
 }
+
+void function_AI (struct board_t *board, int card, int num_lane)
+{
+ int res;
+ for(card=0; card<5; card++)
+ {
+  for(num_lane = 0; num_lane<5; num_lane++)
+  {
+   res=can_play_card(&board,card,num_lane);
+   if (res == 0) play_card(&board,i,num_lane);
+  }
+ }
+}
